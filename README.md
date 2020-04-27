@@ -14,6 +14,23 @@ npm run dev
 npm run test
 ```
 
+## Build
+
+```sh
+docker build -t naturescot/cross-service-pages .
+```
+
+## Run
+
+```sh
+docker run \
+  --name cross-service-pages \
+  --network licensing \
+  -p "3004:3004" \
+  --detach \
+  naturescot/cross-service-pages
+```
+
 ## License
 
 Unless stated otherwise, the codebase is released under the [MIT License](LICENSE.txt). The documentation is available under the terms of the [Open Government Licence, Version 3](LICENSE-OGL.md).
