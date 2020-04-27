@@ -1,0 +1,82 @@
+{
+  "name": "cross-service-pages",
+  "version": "1.0.0",
+  "description": "An application to hold pages that do not belong to any single licence process",
+  "author": "Mike Coats <mike.coats@nature.scot>",
+  "repository": "github.com:Scottish-Natural-Heritage/cross-service-pages",
+  "license": "(MIT OR OGL-UK-3.0 OR Apache-2.0)",
+  "type": "module",
+  "scripts": {
+    "lint": "xo",
+    "scss": "node --experimental-modules src/scss.js",
+    "assets": "cp node_modules/naturescot-frontend/naturescot/assets/images/naturescot-logo.png dist/ && cp node_modules/naturescot-frontend/naturescot/assets/fonts/*.woff2 dist/",
+    "postassets": "node --experimental-modules src/post-assets.js",
+    "build": "npm run scss && npm run assets",
+    "prestart": "npm run build",
+    "start": "node --experimental-modules src/server.js",
+    "dev": "CSP_PORT=3999 nodemon --exec \"npm run lint && npm run start\" -e js,njk,scss --ignore dist/ --ignore cypress/",
+    "cy:run": "cypress run",
+    "test": "CSP_PORT=3004 CSP_PATH_PREFIX=cross-service-pages start-server-and-test start http://localhost:3004/cross-service-pages/health cy:run",
+    "cy:open": "cypress open"
+  },
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.13.4"
+  },
+  "bugs": {
+    "url": "https://github.com/Scottish-Natural-Heritage/cross-service-pages/issues"
+  },
+  "homepage": "https://github.com/Scottish-Natural-Heritage/cross-service-pages#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "govuk-frontend": "^3.6.0",
+    "jimp": "^0.10.3",
+    "morgan": "^1.10.0",
+    "naturescot-frontend": "^1.2.0",
+    "node-sass-package-importer": "^5.3.2",
+    "nunjucks": "^3.2.1",
+    "sass": "^1.26.5",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "cypress": "^4.4.1",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-jsdoc": "^24.0.0",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5",
+    "start-server-and-test": "^1.11.0",
+    "xo": "^0.30.0"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true,
+    "parser": "babel-eslint",
+    "plugins": [
+      "cypress",
+      "jsdoc"
+    ],
+    "envs": [
+      "cypress/globals"
+    ],
+    "extends": [
+      "plugin:jsdoc/recommended"
+    ],
+    "rules": {
+      "import/extensions": 0,
+      "new-cap": 0,
+      "jsdoc/check-examples": 1,
+      "jsdoc/check-indentation": 1,
+      "jsdoc/check-syntax": 1,
+      "jsdoc/match-description": 1,
+      "jsdoc/require-description": 1,
+      "jsdoc/require-description-complete-sentence": 1
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "bracketSpacing": false
+  }
+}
