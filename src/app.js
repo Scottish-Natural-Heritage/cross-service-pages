@@ -43,6 +43,12 @@ app.get(`${config.pathPrefix}/health`, async (request, response) => {
   response.status(200).send({message: 'OK'});
 });
 
+// `/` currently renders the 404 page, but returns a 200 as it's 'technically'
+// the correct page - it's just that we've not got any content here yet.
+app.all(`${config.pathPrefix}`, (request, response) => {
+  response.status(200).render('error-404.njk', {pathPrefix: config.pathPrefix});
+});
+
 // `error-404` is where nginx sends any 404 errors from anywhere on the server.
 app.all(`${config.pathPrefix}/error-404`, (request, response) => {
   response.status(404).render('error-404.njk', {pathPrefix: config.pathPrefix});
