@@ -1,4 +1,4 @@
-{% extends "govuk/template.njk" %}
+{% extends "naturescot/template.njk" %}
 
 {% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
 {% from "naturescot/components/header/macro.njk" import naturescotHeader %}
@@ -76,4 +76,5 @@
 
 {% block bodyEnd %}
   <script src="{{pathPrefix}}/govuk-frontend/all.js"></script>
+  <script src="{{pathPrefix}}/dist/init.js"></script>
 {% endblock %}
