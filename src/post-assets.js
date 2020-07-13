@@ -8,10 +8,10 @@ import Jimp from 'jimp';
  */
 const buildIcon = async (fileName, size) => {
   const orig = await Jimp.read(fileName);
-  const logo = orig.crop(0,0,259,166);
-  const square = logo.contain(size-(8*2), size-(8*2));
-  const transparent = await new Jimp(size,size, '#ffffff00');
-  const newLogo = transparent.composite(square,8,8);
+  const logo = orig.crop(0, 0, 259, 166);
+  const square = logo.contain(size - 8 * 2, size - 8 * 2);
+  const transparent = await new Jimp(size, size, '#ffffff00');
+  const newLogo = transparent.composite(square, 8, 8);
   return newLogo;
 };
 
@@ -23,11 +23,11 @@ const buildSocial = async (fileName) => {
   const orig = await Jimp.read(fileName);
 
   const origSize = Math.max(orig.getWidth(), orig.getHeight());
-  const socialHeight = origSize + (16 * 2);
+  const socialHeight = origSize + 16 * 2;
   const socialWidth = Math.floor(socialHeight * 1.91);
 
   const white = await new Jimp(socialWidth, socialHeight, '#ffffffff');
-  const newSocial = white.composite(orig,(socialWidth-origSize)/2,(socialHeight-origSize)/2);
+  const newSocial = white.composite(orig, (socialWidth - origSize) / 2, (socialHeight - orig.getHeight()) / 2);
   return newSocial;
 };
 
@@ -37,7 +37,6 @@ const buildSocial = async (fileName) => {
  */
 async function main() {
   try {
-
     // This image has been copied in to place by the `assets` npm stage.
     const srcFile = './dist/naturescot-logo.png';
 
