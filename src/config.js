@@ -5,6 +5,7 @@ assert(process.env.CSP_PORT !== undefined, 'A port number (CSP_PORT) is required
 
 const config = Object.freeze({
   port: process.env.CSP_PORT,
+  hostPrefix: process.env.CSP_HOST_PREFIX ? `${process.env.CSP_HOST_PREFIX}` : `http://localhost:${process.env.CSP_PORT}`,
   pathPrefix: process.env.CSP_PATH_PREFIX ? `/${process.env.CSP_PATH_PREFIX}` : ''
 });
 
