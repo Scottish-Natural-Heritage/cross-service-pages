@@ -1,0 +1,26 @@
+name: Build on PRs
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  CSP_PORT: 3004
+
+jobs:
+
+  build:
+    name: Build the Image
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Install all the pre-requisites
+      run: npm ci && npm prune --production
+
+    - name: Check the pre-start operations
+      run: npm run prestart
+
+    - name: Build the Docker Image
+      run: docker build --tag naturescot/cross-service-pages:${GITHUB_SHA} .
