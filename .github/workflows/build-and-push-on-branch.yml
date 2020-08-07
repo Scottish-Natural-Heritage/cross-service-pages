@@ -1,4 +1,4 @@
-name: Build on PRs
+name: Build and Push on Branches
 
 on:
   push:
