@@ -1,4 +1,4 @@
-name: Build and Push on Branches
+name: Build on Pushes to Branches
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
 
 env:
   CSP_PORT: 3004
+  CSP_PATH_PREFIX: cross-service-pages
 
 jobs:
 
