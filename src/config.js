@@ -5,7 +5,7 @@ const config = Object.freeze({
     process.env.CSP_HOST_PREFIX || process.env.CSP_PORT
       ? `http://localhost:${process.env.CSP_PORT}`
       : 'http://localhost:3004',
-  pathPrefix: process.env.CSP_PATH_PREFIX ? `/${process.env.CSP_PATH_PREFIX}` : '/cross-service-pages',
+  pathPrefix: process.env.CSP_PATH_PREFIX ? `/${process.env.CSP_PATH_PREFIX}` : '/cross-service-pages'
 });
 
 export {config as default};

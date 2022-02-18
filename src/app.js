@@ -59,6 +59,11 @@ app.all(`${config.pathPrefix}/error-500`, (request, response) => {
   response.status(500).render('error-500.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
 });
 
+// `privacy-policy` is where the privacy policy is kept.
+app.all(`${config.pathPrefix}/privacy-policy`, (request, response) => {
+  response.status(200).render('privacy-policy.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
+});
+
 // If we hit this route then it's a true, app internal, 404 so render and
 // return it as such.
 app.use((request, response) => {
