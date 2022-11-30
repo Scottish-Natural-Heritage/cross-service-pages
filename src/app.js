@@ -54,6 +54,11 @@ app.all(`${config.pathPrefix}/error-404`, (request, response) => {
   response.status(404).render('error-404.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
 });
 
+// `error-413` is where nginx sends any 413 errors from anywhere on the server.
+app.all(`${config.pathPrefix}/error-413`, (request, response) => {
+  response.status(413).render('error-413.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
+});
+
 // `error-500` is where nginx sends any 500 errors from anywhere on the server.
 app.all(`${config.pathPrefix}/error-500`, (request, response) => {
   response.status(500).render('error-500.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
