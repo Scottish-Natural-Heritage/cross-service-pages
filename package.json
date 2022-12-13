@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Scottish-Natural-Heritage/cross-service-pages#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "govuk-frontend": "3.6.0",
     "jimp": "^0.10.3",
     "morgan": "^1.10.0",
