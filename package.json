@@ -27,30 +27,34 @@
   },
   "homepage": "https://github.com/Scottish-Natural-Heritage/cross-service-pages#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "govuk-frontend": "3.6.0",
-    "jimp": "^0.10.3",
+    "jimp": "^0.13.0",
     "morgan": "^1.10.0",
-    "naturescot-frontend": "2.0.1",
+    "naturescot-frontend": "2.0.2",
     "node-sass-package-importer": "^5.3.2",
-    "nunjucks": "^3.2.1",
-    "sass": "^1.26.5",
-    "winston": "^3.2.1"
+    "nunjucks": "^3.2.3",
+    "sass": "^1.53.0",
+    "winston": "^3.8.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "cypress": "^4.4.1",
-    "eslint-plugin-cypress": "^2.10.3",
-    "eslint-plugin-jsdoc": "^24.0.0",
-    "nodemon": "^2.0.3",
+    "@babel/eslint-parser": "^7.5.4",
+    "cypress": "^5.0.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-jsdoc": "^39.6.4",
+    "nodemon": "^2.0.18",
     "prettier": "^2.0.5",
-    "start-server-and-test": "^1.11.0",
-    "xo": "^0.30.0"
+    "start-server-and-test": "^1.14.0",
+    "xo": "^0.50.0"
   },
   "xo": {
     "space": 2,
     "prettier": true,
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "ecmaVersion": 8
+    },
     "plugins": [
       "cypress",
       "jsdoc"
@@ -64,7 +68,7 @@
     "rules": {
       "import/extensions": 0,
       "new-cap": 0,
-      "jsdoc/check-examples": 1,
+      "jsdoc/check-examples": 0,
       "jsdoc/check-indentation": 1,
       "jsdoc/check-syntax": 1,
       "jsdoc/match-description": 1,
@@ -76,6 +80,7 @@
     "printWidth": 120,
     "singleQuote": true,
     "arrowParens": "always",
-    "bracketSpacing": false
+    "bracketSpacing": false,
+    "trailingComma": "none"
   }
 }
