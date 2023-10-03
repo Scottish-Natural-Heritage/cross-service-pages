@@ -20,7 +20,7 @@
     "cy:open": "cypress open"
   },
   "engines": {
-    "node": "20"
+    "node": ">=20"
   },
   "bugs": {
     "url": "https://github.com/Scottish-Natural-Heritage/cross-service-pages/issues"
