@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "lint": "xo",
+    "lint:code:fix": "xo --fix",
     "scss": "node --experimental-modules src/scss.js",
     "assets": "cp node_modules/naturescot-frontend/naturescot/assets/images/naturescot-logo.png dist/ && cp node_modules/naturescot-frontend/naturescot/assets/fonts/*.woff2 dist/ && cp -R src/assets/* dist/",
     "postassets": "node --experimental-modules src/post-assets.js",
@@ -45,7 +46,7 @@
     "nodemon": "^3.1.0",
     "prettier": "^2.0.5",
     "start-server-and-test": "^2.0.3",
-    "xo": "^0.50.0"
+    "xo": "^0.58.0"
   },
   "xo": {
     "space": 2,
@@ -73,7 +74,8 @@
       "jsdoc/check-syntax": 1,
       "jsdoc/match-description": 1,
       "jsdoc/require-description": 1,
-      "jsdoc/require-description-complete-sentence": 1
+      "jsdoc/require-description-complete-sentence": 1,
+      "unicorn/prevent-abbreviations": 0
     }
   },
   "prettier": {
