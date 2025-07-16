@@ -1,0 +1,93 @@
+name: On-push build of image
+
+on:
+  push:
+    branches: [ main, develop ]
+
+env:
+  CSP_PORT: 3004
+  CSP_PATH_PREFIX: cross-service-pages
+  PROJECT: licensing
+
+jobs:
+  determine-environment:
+    name: Determine Deployment Environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Select environment
+        id: select-environment
+        run: |
+          if [ "${{ github.event_name }}" == "push" ] && [ "${{ github.ref_name }}" == "main" ]; then
+            echo "live"
+            echo "environment=live" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" == "push" ] && [ "${{ github.ref_name }}" == "develop" ]; then
+            echo "uat"
+            echo "environment=uat" >> "$GITHUB_OUTPUT"
+          else
+            echo "dev"
+            echo "environment=dev" >> "$GITHUB_OUTPUT"
+          fi
+
+    outputs:
+      environment: ${{ steps.select-environment.outputs.environment }}
+
+  build:
+    name: Build the Image
+    needs: determine-environment
+    runs-on: ubuntu-latest
+
+    env:
+      ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install all the pre-requisites
+      run: npm ci && npm prune --production
+
+    - name: Check the pre-start operations
+      run: npm run prestart
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build and tag the Docker Image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: naturescot/cross-service-pages
+      run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_REF##*/} .
+
+    - name: Push the Docker Image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: naturescot/cross-service-pages
+      run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_REF##*/}
+
+    - name: Logout of Amazon ECR
+      if: always()
+      run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+    - name: Force re-deployment if service exists
+      id: redeploy-service
+      env:
+        CLUSTER_NAME: ${{env.PROJECT}}-${{env.ENVIRONMENT}}-cluster
+        SERVICE_NAME: ${{env.PROJECT}}-${{env.ENVIRONMENT}}-cross-service-pages
+      run: |
+        echo Cluster: $CLUSTER_NAME
+        echo Service: $SERVICE_NAME
+        if [ $(aws ecs describe-services --cluster $CLUSTER_NAME --services $SERVICE_NAME | jq '.services | length') == 1 ]
+        then
+          aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment > /dev/null
+          echo service redeployed
+        else
+          echo service not redeployed
+        fi
