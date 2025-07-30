@@ -3,10 +3,10 @@ name: On-push build of image
 on:
   push:
     branches: [ main, develop ]
+  pull_request:
+    branches: [develop]
 
 env:
-  CSP_PORT: 3004
-  CSP_PATH_PREFIX: cross-service-pages
   PROJECT: licensing
 
 jobs:
