@@ -47,7 +47,7 @@ jobs:
       run: npm ci
 
     - name: Check the pre-start operations
-      run: npm run prestart
+      run: npm run build
 
     - name: Remove all build & test dependencies
       run: npm prune --production
