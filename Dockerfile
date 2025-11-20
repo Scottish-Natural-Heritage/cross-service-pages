@@ -25,7 +25,7 @@ USER node
 COPY --chown=node:node package*.json ./
 
 # install all the node modules required
-RUN npm ci && npm build && npm prune --production
+RUN npm ci && npm run build && npm prune --production
 
 ################################################################################
 # Deployable Image
