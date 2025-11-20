@@ -15,6 +15,11 @@ RUN apk add --no-cache --virtual .build-deps \
     g++ \
     git
 
+# install all the node modules required
+RUN npm ci
+RUN npm run build
+RUN npm prune --production
+
 # by default, we want to do everything in a non-privileged user, so go to their
 # home dir and drop to their account
 WORKDIR /home/node
@@ -23,11 +28,6 @@ USER node
 # copy in the package files so that we can install and build the project
 # dependencies
 COPY --chown=node:node package*.json ./
-
-# install all the node modules required
-RUN npm ci
-RUN npm run build
-RUN npm prune --production
 
 ################################################################################
 # Deployable Image
