@@ -4,7 +4,7 @@ import packageImporter from 'node-sass-package-importer';
 import config from './config.js';
 
 // Read in the source file.
-const lines = readFileSync('./src/main.scss').toString().split('\n');
+const lines = readFileSync('src/main.scss').toString().split('\n');
 
 // Fill the place-holder line with a correct path.
 for (const l in lines) {
@@ -23,4 +23,4 @@ const result = sass.renderSync({
 });
 
 // Save it to the destination.
-writeFileSync('./dist/main.css', result.css);
+writeFileSync('dist/main.css', result.css);
