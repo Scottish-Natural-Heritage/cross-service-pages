@@ -68,6 +68,11 @@ app.all(`${config.pathPrefix}/privacy-policy`, (request, response) => {
   response.status(200).render('privacy-policy.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
 });
 
+// `maintenance` is where the "Under Maintenance" page is kept.
+app.all(`${config.pathPrefix}/maintenance`, (request, response) => {
+  response.status(200).render('maintenance.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
+});
+
 // If we hit this route then it's a true, app internal, 404 so render and
 // return it as such.
 app.use((request, response) => {
