@@ -2,8 +2,8 @@
 # Builder Stage
 ################################################################################
 
-# we're deploying to the 20-alpine image, so do our building on it too
-FROM node:20-alpine as builder
+# we're deploying to the 24-alpine image, so do our building on it too
+FROM node:24-alpine AS builder
 
 # node-gyp runs as part of the npm install, so we need to install dependencies
 # we need git for cypress as it's using a custom version of requests that
@@ -31,8 +31,8 @@ RUN npm ci && npm prune --production
 # Deployable Image
 ################################################################################
 
-# we built on the 20-alpine image, so we need to deploy on it too
-FROM node:20-alpine
+# we built on the 24-alpine image, so we need to deploy on it too
+FROM node:24-alpine
 
 # drop back to the non-privileged user for run-time
 WORKDIR /home/node
@@ -48,8 +48,8 @@ RUN mkdir -p ./dist
 
 # these variables are for overriding but keep them consistent between image and
 # run
-ENV CSP_PORT 3004
-ENV CSP_PATH_PREFIX cross-service-pages
+ENV CSP_PORT=3004
+ENV CSP_PATH_PREFIX=cross-service-pages
 
 # let docker know about our listening port
 EXPOSE $CSP_PORT
