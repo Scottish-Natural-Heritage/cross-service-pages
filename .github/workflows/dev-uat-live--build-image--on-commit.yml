@@ -43,6 +43,10 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
+    - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
     - name: Install all the pre-requisites
       run: npm ci
 
@@ -68,12 +72,14 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: naturescot/cross-service-pages
       run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_REF##*/} .
+           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_REF##*/} $ECR_REGISTRY/$ECR_REPOSITORY:prerelease
 
     - name: Push the Docker Image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: naturescot/cross-service-pages
       run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:${GITHUB_REF##*/}
+           docker push $ECR_REGISTRY/$ECR_REPOSITORY:prerelease
 
     - name: Logout of Amazon ECR
       if: always()
