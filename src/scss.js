@@ -8,8 +8,8 @@ const lines = readFileSync('src/main.scss').toString().split('\n');
 
 // Fill the place-holder line with a correct path.
 for (const l in lines) {
-  if (lines[l].startsWith('$path-prefix:')) {
-    lines[l] = `$path-prefix: '${config.pathPrefix}';`;
+  if (lines[l].trimStart().startsWith('$path-prefix:')) {
+    lines[l] = `$path-prefix: '${config.pathPrefix}',`;
   }
 }
 
@@ -18,6 +18,7 @@ const fixedFile = lines.join('\n');
 // Render the SCSS.
 const result = sass.renderSync({
   data: fixedFile,
+  includePaths: ['node_modules'],
   importer: packageImporter(),
   outputStyle: 'compressed'
 });

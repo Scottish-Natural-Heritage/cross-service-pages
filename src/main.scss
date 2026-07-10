@@ -1,7 +1,5 @@
 @use 'naturescot-frontend/naturescot/all' as * with (
   $path-prefix: '',
-  $govuk-font-family: ('Roboto', sans-serif),
-  $govuk-assets-path: '/govuk-frontend/assets/',
   $naturescot-logo: '/dist/naturescot-logo.png'
 );
 
