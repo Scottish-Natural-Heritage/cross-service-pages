@@ -29,10 +29,10 @@
   "homepage": "https://github.com/Scottish-Natural-Heritage/cross-service-pages#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "govuk-frontend": "3.6.0",
+    "govuk-frontend": "^5.14.0",
     "jimp": "^1.6.0",
     "morgan": "^1.10.0",
-    "naturescot-frontend": "2.0.2",
+    "naturescot-frontend": "^5.9.3",
     "node-sass-package-importer": "^3.0.4",
     "nunjucks": "^3.2.3",
     "sass": "^1.94.2",
