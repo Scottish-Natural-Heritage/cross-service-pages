@@ -1,3 +1,10 @@
+@use 'naturescot-frontend/naturescot/all' as * with (
+  $path-prefix: '',
+  $govuk-font-family: ('Roboto', sans-serif),
+  $govuk-assets-path: '/govuk-frontend/assets/',
+  $naturescot-logo: '/dist/naturescot-logo.png'
+);
+
 body {
   margin: 0;
 }
@@ -22,12 +29,3 @@ body {
     url('./Roboto-Bold.woff2') format('woff2');
 }
 
-$path-prefix: '';
-
-$govuk-font-family: 'Roboto', sans-serif;
-
-$govuk-assets-path: $path-prefix + '/govuk-frontend/assets/';
-@import '~govuk-frontend/govuk/all';
-
-$naturescot-logo: $path-prefix + '/dist/naturescot-logo.png';
-@import '~naturescot-frontend/naturescot/all';

@@ -1,5 +1,5 @@
 import {readFileSync, writeFileSync} from 'node:fs';
-import sass from 'sass';
+import * as sass from 'sass';
 import packageImporter from 'node-sass-package-importer';
 import config from './config.js';
 
