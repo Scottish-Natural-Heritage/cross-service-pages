@@ -33,7 +33,10 @@ app.use(
 // `govuk-frontend` is for their assets.
 app.use(
   `${config.pathPrefix}/govuk-frontend`,
-  express.static(path.join(__dirname, '..', '/node_modules/govuk-frontend/dist/govuk'), {immutable: true, maxAge: '3 hours'})
+  express.static(path.join(__dirname, '..', '/node_modules/govuk-frontend/dist/govuk'), {
+    immutable: true,
+    maxAge: '3 hours'
+  })
 );
 
 // `health` is a simple health-check end-point to test whether the service is
