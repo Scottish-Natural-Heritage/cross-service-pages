@@ -1,4 +1,4 @@
-import {readFileSync, writeFileSync} from 'node:fs';
+import {readFileSync, writeFileSync, mkdirSync} from 'node:fs';
 import * as sass from 'sass';
 import packageImporter from 'node-sass-package-importer';
 import config from './config.js';
@@ -23,5 +23,7 @@ const result = sass.renderSync({
   outputStyle: 'compressed'
 });
 
+// Ensure directory is created before writing
+mkdirSync('dist/assets', {recursive: true});
 // Save it to the destination.
-writeFileSync('dist/main.css', result.css);
+writeFileSync('dist/assets/main.css', result.css);

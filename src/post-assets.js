@@ -41,16 +41,16 @@ const buildSocial = async (fileName) => {
 async function main() {
   try {
     // This image has been copied in to place by the `assets` npm stage.
-    const sourceFile = './dist/naturescot-logo.png';
+    const sourceFile = './dist/assets/naturescot-logo.png';
 
     // Build the social share image.
     const newSocial = await buildSocial(sourceFile);
-    await newSocial.write(`./dist/naturescot-opengraph-image.png`);
+    await newSocial.write(`./dist/assets/naturescot-opengraph-image.png`);
 
     // Build all the fav & home screen icons.
     for await (const size of [192, 180, 167, 152, 120]) {
       const newIcon = await buildIcon(sourceFile, size);
-      await newIcon.write(`./dist/icon-${size}x${size}.png`);
+      await newIcon.write(`./dist/assets/icon-${size}x${size}.png`);
     }
   } catch (error) {
     console.error(error);

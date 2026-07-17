@@ -26,8 +26,8 @@ app.set('trust proxy', 1); // Trust first proxy
 
 // `dist` is for our assets.
 app.use(
-  `${config.pathPrefix}/dist`,
-  express.static(path.join(__dirname, '..', '/dist'), {immutable: true, maxAge: '30 minutes'})
+  `${config.pathPrefix}/dist/assets`,
+  express.static(path.join(__dirname, '..', '/dist/assets'), {immutable: true, maxAge: '30 minutes'})
 );
 
 // `govuk-frontend` is for their assets.
