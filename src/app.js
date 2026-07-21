@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(morgan('combined', {stream: logger.stream}));
 
-nunjucks.configure(['src/views', 'node_modules/naturescot-frontend', 'node_modules/govuk-frontend'], {
+nunjucks.configure(['src/views', 'node_modules/naturescot-frontend', 'node_modules/govuk-frontend/dist'], {
   autoescape: true,
   express: app
 });
@@ -26,14 +26,17 @@ app.set('trust proxy', 1); // Trust first proxy
 
 // `dist` is for our assets.
 app.use(
-  `${config.pathPrefix}/dist`,
-  express.static(path.join(__dirname, '..', '/dist'), {immutable: true, maxAge: '30 minutes'})
+  `${config.pathPrefix}/dist/assets`,
+  express.static(path.join(__dirname, '..', '/dist/assets'), {immutable: true, maxAge: '30 minutes'})
 );
 
 // `govuk-frontend` is for their assets.
 app.use(
   `${config.pathPrefix}/govuk-frontend`,
-  express.static(path.join(__dirname, '..', '/node_modules/govuk-frontend/govuk'), {immutable: true, maxAge: '3 hours'})
+  express.static(path.join(__dirname, '..', '/node_modules/govuk-frontend/dist/govuk'), {
+    immutable: true,
+    maxAge: '3 hours'
+  })
 );
 
 // `health` is a simple health-check end-point to test whether the service is

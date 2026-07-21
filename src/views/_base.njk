@@ -9,13 +9,13 @@
 {% block pageTitle %}NatureScot - Licensing{% endblock %}
 
 {% block headIcons %}
-  <link rel="shortcut icon" type="image/png" sizes="192x192" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-192x192.png">
+  <link rel="shortcut icon" type="image/png" sizes="192x192" href="{{hostPrefix}}{{pathPrefix}}/dist/assets/icon-192x192.png">
 
-  <link rel="apple-touch-icon" sizes="192x192" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-192x192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-180x180.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-167x167.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-152x152.png">
-  <link rel="apple-touch-icon" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="{{hostPrefix}}{{pathPrefix}}/dist/assets/icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{hostPrefix}}{{pathPrefix}}/dist/assets/icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="{{hostPrefix}}{{pathPrefix}}/dist/assets/icon-167x167.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{hostPrefix}}{{pathPrefix}}/dist/assets/icon-152x152.png">
+  <link rel="apple-touch-icon" href="{{hostPrefix}}{{pathPrefix}}/dist/assets/icon-120x120.png">
 
   <link rel="canonical" href="{{hostPrefix}}{{pathPrefix}}" />
   <meta name="description" content="Use this service to apply for licences.">
@@ -23,7 +23,7 @@
   <!-- OpenGraph Data -->
   <meta property="og:title" content="NatureScot - Licensing">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{{hostPrefix}}{{pathPrefix}}/dist/naturescot-opengraph-image.png">
+  <meta property="og:image" content="{{hostPrefix}}{{pathPrefix}}/dist/assets/naturescot-opengraph-image.png">
   <meta property="og:url" content="{{hostPrefix}}{{pathPrefix}}">
   <meta property="og:site_name" content="NatureScot - Licensing">
   <meta property="og:description" content="Use this service to apply for licences.">
@@ -37,7 +37,7 @@
 {% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{pathPrefix}}/dist/main.css">
+  <link rel="stylesheet" href="{{pathPrefix}}/dist/assets/main.css">
 {% endblock %}
 
 {% block skipLink %}
@@ -88,7 +88,6 @@
 {% endblock %}
 
 {% block bodyEnd %}
-  <script src="{{pathPrefix}}/govuk-frontend/all.js"></script>
-  <script src="{{pathPrefix}}/dist/init.js"></script>
-  <script src="{{pathPrefix}}/dist/back.js"></script>
+  <script type="module" src="{{pathPrefix}}/govuk-frontend/govuk-frontend.min.js"></script>
+  <script src="{{pathPrefix}}/dist/assets/init.js"></script>
 {% endblock %}
