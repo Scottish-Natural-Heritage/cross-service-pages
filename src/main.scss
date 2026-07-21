@@ -1,6 +1,6 @@
 @use 'naturescot-frontend/naturescot/all' as * with (
-  $path-prefix: '',
-  $naturescot-logo: '/dist/naturescot-logo.png'
+  $path-prefix: '/cross-service-pages',
+  $naturescot-logo: 'naturescot/assets/naturescot-logo.png'
 );
 
 body {

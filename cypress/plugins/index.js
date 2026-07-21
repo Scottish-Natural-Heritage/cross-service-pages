@@ -15,6 +15,8 @@
 // the project's config changing)
 
 /**
+ * Configures Cypress plugins and allows registration of event handlers.
+ *
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
